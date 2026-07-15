@@ -47,6 +47,34 @@ const translations = {
         optGovt: "Government Employee",
         optBusiness: "Business Owner",
         errCategory: "Please select a category",
+        labelPoliceStation: "Select Nearest Police Station *",
+        optSelectPoliceStation: "Select Nearest Police Station",
+        errPoliceStation: "Please select the nearest police station",
+        policeStations: {
+            "Kotwali Balaghat": "Kotwali Balaghat",
+            "Bharveli": "Bharveli",
+            "Gramin Navegaon": "Gramin Navegaon",
+            "Hatta": "Hatta",
+            "Kirnapur": "Kirnapur",
+            "Katangi": "Katangi",
+            "Lalbarra": "Lalbarra",
+            "Lamta": "Lamta",
+            "Baihar": "Baihar",
+            "Birsa": "Birsa",
+            "Garhi": "Garhi",
+            "Changotola": "Changotola",
+            "Bahela": "Bahela",
+            "Waraseoni": "Waraseoni",
+            "Rampayli": "Rampayli",
+            "Khairlanji": "Khairlanji",
+            "Lanji": "Lanji",
+            "Malajkhand": "Malajkhand",
+            "Rupjhar": "Rupjhar",
+            "Tirodi": "Tirodi",
+            "Women's Police Station, Balaghat": "Women's Police Station, Balaghat",
+            "SC/ST Police Station (AJK), Balaghat": "SC/ST Police Station (AJK), Balaghat",
+            "Traffic Police Station": "Traffic Police Station"
+        },
         nextToPledgeBtn: "Proceed to Pledge",
         pledgeHeading: "Nasha Mukti Pledge",
         pledgeSub: "Read the de-addiction commitment carefully",
@@ -114,6 +142,34 @@ const translations = {
         optGovt: "सरकारी कर्मचारी (Govt. Employee)",
         optBusiness: "व्यवसायी (Business Owner)",
         errCategory: "कृपया एक श्रेणी चुनें",
+        labelPoliceStation: "निकटतम पुलिस स्टेशन चुनें *",
+        optSelectPoliceStation: "निकटतम पुलिस स्टेशन चुनें",
+        errPoliceStation: "कृपया निकटतम पुलिस स्टेशन का चयन करें",
+        policeStations: {
+            "Kotwali Balaghat": "कोतवाली बालाघाट",
+            "Bharveli": "भरवेली",
+            "Gramin Navegaon": "ग्रामीण नवेगांव",
+            "Hatta": "हट्टा",
+            "Kirnapur": "किरनापुर",
+            "Katangi": "कटंगी",
+            "Lalbarra": "लालबर्रा",
+            "Lamta": "लामता",
+            "Baihar": "बैहर",
+            "Birsa": "बिरसा",
+            "Garhi": "गढ़ी",
+            "Changotola": "चांगोटोला",
+            "Bahela": "बहेला",
+            "Waraseoni": "वारासिवनी",
+            "Rampayli": "रामपायली",
+            "Khairlanji": "खैरलांजी",
+            "Lanji": "लांजी",
+            "Malajkhand": "मलाजखंड",
+            "Rupjhar": "रूपझर",
+            "Tirodi": "तिरोड़ी",
+            "Women's Police Station, Balaghat": "महिला थाना, बालाघाट",
+            "SC/ST Police Station (AJK), Balaghat": "अनुसूचित जाति/जनजाति (अजाक) थाना, बालाघाट",
+            "Traffic Police Station": "यातायात थाना"
+        },
         nextToPledgeBtn: "शपथ पत्र पढ़ें",
         pledgeHeading: "नशा मुक्ति शपथ",
         pledgeSub: "नशा मुक्ति संकल्प को ध्यान से पढ़ें",
@@ -232,6 +288,11 @@ const optMale = document.getElementById('optMale');
 const optFemale = document.getElementById('optFemale');
 const optOther = document.getElementById('optOther');
 
+const labelPoliceStation = document.getElementById('labelPoliceStation');
+const policeStationSelect = document.getElementById('policeStation');
+const errPoliceStation = document.getElementById('errPoliceStation');
+const optSelectPoliceStation = document.getElementById('optSelectPoliceStation');
+
 const labelDistrict = document.getElementById('labelDistrict');
 const districtInput = document.getElementById('district');
 const errDistrict = document.getElementById('errDistrict');
@@ -319,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
-    [categorySelect, genderSelect].forEach(select => {
+    [categorySelect, genderSelect, policeStationSelect].forEach(select => {
         if (select) {
             select.addEventListener('change', () => {
                 select.classList.remove('invalid');
@@ -375,6 +436,17 @@ function updateUI() {
     optFemale.textContent = t.optFemale;
     optOther.textContent = t.optOther;
     errGender.textContent = t.errGender;
+
+    if (labelPoliceStation) labelPoliceStation.textContent = t.labelPoliceStation;
+    if (optSelectPoliceStation) optSelectPoliceStation.textContent = t.optSelectPoliceStation;
+    if (errPoliceStation) errPoliceStation.textContent = t.errPoliceStation;
+    if (policeStationSelect) {
+        Array.from(policeStationSelect.options).forEach(opt => {
+            if (opt.value && t.policeStations[opt.value]) {
+                opt.textContent = t.policeStations[opt.value];
+            }
+        });
+    }
     
     labelDistrict.textContent = t.labelDistrict;
     errDistrict.textContent = t.errDistrict;
@@ -580,6 +652,15 @@ function validateStep1() {
     } else {
         categorySelect.classList.remove('invalid');
     }
+
+    // Validate Police Station Selection
+    const policeStationVal = policeStationSelect.value;
+    if (!policeStationVal) {
+        policeStationSelect.classList.add('invalid');
+        isValid = false;
+    } else {
+        policeStationSelect.classList.remove('invalid');
+    }
     
     return isValid;
 }
@@ -603,6 +684,7 @@ async function handleFormSubmit(e) {
     const mobile = mobileInput.value.trim() || 'N/A';
     const age = ageInput.value.trim();
     const gender = genderSelect.value;
+    const policeStation = policeStationSelect.value;
     const district = districtInput.value.trim();
     const block = blockInput.value.trim() || 'N/A';
     const village = villageInput.value.trim() || 'N/A';
@@ -626,7 +708,8 @@ async function handleFormSubmit(e) {
             district,
             block,
             village,
-            category
+            category,
+            policeStation
         };
 
         // Fire & forget fetch (using no-cors as Web Apps often respond with redirects)
@@ -644,7 +727,7 @@ async function handleFormSubmit(e) {
 
     // 2. Generate and Render Certificate
     try {
-        await generateCertificate(name, certificateId, district, village);
+        await generateCertificate(name, certificateId, district, village, policeStation);
         // 3. Refresh the live counter a moment after sheet write completes
         setTimeout(fetchPledgeCount, 3000);
     } catch (err) {
@@ -655,7 +738,7 @@ async function handleFormSubmit(e) {
 // ==========================================================================
 // Certificate Generation (Canvas Engine)
 // ==========================================================================
-async function generateCertificate(name, certId, district, village) {
+async function generateCertificate(name, certId, district, village, policeStation = '') {
     const canvas = certificateCanvas;
     const ctx = canvas.getContext('2d');
     const w = canvas.width;
@@ -671,23 +754,23 @@ async function generateCertificate(name, certId, district, village) {
     // 2. Draw dual-styled ornamental border
     // Outer Dark Green Border
     ctx.lineWidth = 14;
-    ctx.strokeStyle = '#15803D';
+    ctx.strokeStyle = '#1B4332';
     ctx.strokeRect(7, 7, w - 14, h - 14);
 
     // Inner Accent Saffron Border
     ctx.lineWidth = 3;
-    ctx.strokeStyle = '#F97316';
+    ctx.strokeStyle = '#E65F2B';
     ctx.strokeRect(20, 20, w - 40, h - 40);
 
     // Tri-color Corner Decorative Shapes
     const cornerSize = 40;
     // Top-Left corner accent
-    ctx.fillStyle = '#F97316'; // Saffron
+    ctx.fillStyle = '#E65F2B'; // Saffron
     ctx.fillRect(20, 20, cornerSize, 6);
     ctx.fillRect(20, 20, 6, cornerSize);
     
     // Bottom-Right corner accent
-    ctx.fillStyle = '#16A34A'; // Green
+    ctx.fillStyle = '#1B4332'; // Green
     ctx.fillRect(w - 20 - cornerSize, h - 26, cornerSize, 6);
     ctx.fillRect(w - 26, h - 20 - cornerSize, 6, cornerSize);
 
@@ -704,7 +787,7 @@ async function generateCertificate(name, certId, district, village) {
             };
             logoImg.onerror = () => {
                 // Draw a fallback colored crest if SVG fail
-                ctx.fillStyle = '#0F2B5B';
+                ctx.fillStyle = '#1B4332';
                 ctx.beginPath();
                 ctx.arc(x + size / 2, y + size / 2, size / 2 - 5, 0, Math.PI * 2);
                 ctx.fill();
@@ -744,24 +827,24 @@ async function generateCertificate(name, certId, district, village) {
 
     // 4. Header Text
     ctx.textAlign = 'center';
-    ctx.fillStyle = '#15803D';
+    ctx.fillStyle = '#1B4332';
     ctx.font = 'bold 18px "Noto Sans", sans-serif';
     ctx.fillText('MADHYA PRADESH POLICE ', w / 2, 165);
     
-    ctx.fillStyle = '#F97316';
+    ctx.fillStyle = '#E65F2B';
     ctx.font = 'bold 15px "Noto Sans", sans-serif';
     ctx.fillText('BALAGHAT POLICE - NASHA MUKTI ABHIYAN ', w / 2, 188);
 
     // Separator line
     ctx.lineWidth = 1;
-    ctx.strokeStyle = '#E2E8F0';
+    ctx.strokeStyle = '#E0E0E0';
     ctx.beginPath();
     ctx.moveTo(w / 2 - 150, 205);
     ctx.lineTo(w / 2 + 150, 205);
     ctx.stroke();
 
     // 5. Title
-    ctx.fillStyle = '#15803D';
+    ctx.fillStyle = '#1B4332';
     ctx.font = 'bold 30px "Noto Sans Devanagari", "Noto Sans", sans-serif';
     ctx.fillText('CERTIFICATE OF COMMITMENT ', w / 2, 250);
 
@@ -771,13 +854,13 @@ async function generateCertificate(name, certId, district, village) {
     ctx.fillText('This is to certify that ', w / 2, 290);
 
     // 7. Participant Name (Stands out)
-    ctx.fillStyle = '#15803D';
+    ctx.fillStyle = '#1B4332';
     ctx.font = 'bold italic 36px "Noto Sans Devanagari", "Noto Sans", sans-serif';
     ctx.fillText(name, w / 2, 345);
 
     // Underline name
     ctx.lineWidth = 2;
-    ctx.strokeStyle = '#F97316';
+    ctx.strokeStyle = '#E65F2B';
     ctx.beginPath();
     ctx.moveTo(w / 2 - 180, 358);
     ctx.lineTo(w / 2 + 180, 358);
@@ -800,7 +883,7 @@ async function generateCertificate(name, certId, district, village) {
     ctx.fillText('नशीले पदार्थों से दूर रहना, स्वस्थ जीवनशैली को बढ़ावा देना और नशा-मुक्त समाज का समर्थन करना।', w / 2, 518);
 
     // Motto text
-    ctx.fillStyle = '#16A34A';
+    ctx.fillStyle = '#E65F2B';
     ctx.font = 'bold 16px "Noto Sans Devanagari", "Noto Sans", sans-serif';
     ctx.fillText('“नशा मुक्त बालाघाट - देश भक्ति जन सेवा”', w / 2, 560);
 
@@ -812,9 +895,13 @@ async function generateCertificate(name, certId, district, village) {
     const formattedDate = new Date().toLocaleDateString(currentLanguage === 'en' ? 'en-IN' : 'hi-IN', {
         year: 'numeric', month: 'long', day: 'numeric'
     });
+    
+    const pStationText = translations[currentLanguage].policeStations[policeStation] || policeStation;
+
     ctx.fillText(`Date / दिनांक: ${formattedDate}`, 65, 680);
     ctx.fillText(`ID / प्रमाण पत्र संख्या: ${certId}`, 65, 705);
-    ctx.fillText(`Status: VERIFIED / सत्यापित`, 65, 730);
+    ctx.fillText(`Police Station / थाना: ${pStationText}`, 65, 730);
+    ctx.fillText(`Status / स्थिति: VERIFIED / सत्यापित`, 65, 755);
 
     // 11. Right: Signature Block & Seal (Placeholder until approved)
     // Reset
@@ -1005,7 +1092,7 @@ function resetFormAndPledge() {
     welcomeSection.classList.remove('hidden');
     
     // Reset validation errors visually
-    [fullNameInput, mobileInput, ageInput, genderSelect, districtInput, categorySelect].forEach(input => {
+    [fullNameInput, mobileInput, ageInput, genderSelect, policeStationSelect, districtInput, categorySelect].forEach(input => {
         if (input) input.classList.remove('invalid');
     });
 }

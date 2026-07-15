@@ -4,7 +4,7 @@
  * Instructions:
  * 1. Open a new Google Sheet.
  * 2. Create the following column headers in Row 1:
- *    A: Timestamp | B: Certificate ID | C: Name | D: Mobile | E: Age | F: Gender | G: District | H: Block | I: Village | J: Category
+ *    A: Timestamp | B: Certificate ID | C: Name | D: Mobile | E: Age | F: Gender | G: District | H: Block | I: Village | J: Category | K: Police Station
  * 3. Go to Extensions -> Apps Script.
  * 4. Delete any default code and paste this entire script.
  * 5. Click Save (Disk icon).
@@ -54,7 +54,8 @@ function doPost(e) {
       data.district,
       data.block,
       data.village,
-      data.category
+      data.category,
+      data.policeStation
     ]);
 
     return ContentService

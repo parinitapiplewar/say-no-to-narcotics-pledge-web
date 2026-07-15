@@ -2,23 +2,25 @@
    CSS Design Tokens & Core Variables
    ========================================== */
 :root {
-    --primary-green: #15803D;
-    --primary-green-hover: #166534;
-    --accent-saffron: #F97316;
-    --accent-green: #16A34A;
+    --primary-green: #1B4332; /* Elegant dark green typography */
+    --primary-green-hover: #112A1F; /* Deeper dark green for hover */
+    --accent-saffron: #E65F2B; /* Deep vivid saffron accents */
+    --accent-saffron-hover: #C5471B; /* Saffron hover state */
+    --accent-green: #2D6A4F; /* Soft accent green for secondary headers/alerts */
     --bg-white: #FFFFFF;
-    --bg-light: #F8FAFC;
-    --text-dark: #0F172A;
-    --text-muted: #475569;
-    --error-red: #EF4444;
-    --border-color: #E2E8F0;
-    --success-green: #16A34A;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
-    --border-radius: 12px;
+    --bg-light: #FDFDFB; /* Elegant warm off-white background */
+    --bg-body: #FAF9F6; /* Pure white/off-white main canvas */
+    --text-dark: #1B4332; /* Dark green typography for premium organic vibe */
+    --text-muted: #556B60; /* Soft green-gray for labels and secondary text */
+    --error-red: #D32F2F;
+    --border-color: #E0E0E0; /* Sharp modern input borders */
+    --success-green: #2D6A4F;
+    --shadow-sm: 0 2px 8px rgba(27, 67, 50, 0.03);
+    --shadow-md: 0 8px 32px 0 rgba(27, 67, 50, 0.05), 0 1px 2px 0 rgba(27, 67, 50, 0.02);
+    --shadow-lg: 0 16px 48px 0 rgba(27, 67, 50, 0.08), 0 1px 3px 0 rgba(27, 67, 50, 0.03);
+    --border-radius: 14px; /* Slightly softer premium curved corners */
     --font-primary: 'Noto Sans', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --transition-speed: 0.25s;
+    --transition-speed: 0.3s; /* Smoother premium transitions */
 }
 
 /* ==========================================
@@ -32,7 +34,7 @@
 
 body {
     font-family: var(--font-primary);
-    background-color: var(--bg-white);
+    background-color: var(--bg-body);
     color: var(--text-dark);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -125,24 +127,27 @@ body {
 /* Language Toggle Button */
 .lang-toggle-btn {
     background-color: var(--bg-light);
-    border: 1.5px solid var(--primary-green);
+    border: 1px solid var(--primary-green);
     color: var(--primary-green);
-    padding: 6px 14px;
+    padding: 6px 16px;
     border-radius: 20px;
     font-size: 13px;
     font-weight: 700;
     cursor: pointer;
-    transition: all var(--transition-speed) ease;
+    transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 36px;
     outline: none;
+    box-shadow: var(--shadow-sm);
 }
 
 .lang-toggle-btn:hover, .lang-toggle-btn:focus-visible {
     background-color: var(--primary-green);
     color: var(--bg-white);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(27, 67, 50, 0.1);
 }
 
 /* ==========================================
@@ -158,13 +163,23 @@ body {
 
 /* Common Section Cards */
 .section-card {
-    background-color: var(--bg-white);
-    border: 1px solid var(--border-color);
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(27, 67, 50, 0.08);
     border-radius: var(--border-radius);
-    padding: 24px;
+    padding: 36px 30px;
     box-shadow: var(--shadow-md);
-    transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
-    margin-bottom: 24px;
+    transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1), 
+                border-color var(--transition-speed) ease;
+    margin-bottom: 32px;
+}
+
+.section-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(27, 67, 50, 0.15);
 }
 
 .section-card.hidden {
@@ -264,7 +279,7 @@ body {
    Buttons Setup
    ========================================== */
 .primary-btn {
-    background-color: var(--primary-green);
+    background-color: var(--accent-saffron);
     color: var(--bg-white);
     border: none;
     padding: 14px 28px;
@@ -273,8 +288,10 @@ body {
     border-radius: var(--border-radius);
     cursor: pointer;
     width: 100%;
-    box-shadow: var(--shadow-sm);
-    transition: background-color var(--transition-speed) ease, transform 0.1s ease;
+    box-shadow: 0 4px 14px rgba(230, 95, 43, 0.2);
+    transition: background-color var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.1s ease, 
+                box-shadow var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -282,7 +299,8 @@ body {
 }
 
 .primary-btn:hover {
-    background-color: var(--primary-green-hover);
+    background-color: var(--accent-saffron-hover);
+    box-shadow: 0 6px 20px rgba(230, 95, 43, 0.35);
 }
 
 .primary-btn:active {
@@ -294,18 +312,19 @@ body {
     cursor: not-allowed;
     opacity: 0.6;
     transform: none;
+    box-shadow: none;
 }
 
 .secondary-btn {
     background-color: var(--bg-white);
     color: var(--primary-green);
-    border: 2px solid var(--primary-green);
+    border: 1px solid var(--primary-green);
     padding: 12px 24px;
     font-size: 15px;
     font-weight: 700;
     border-radius: var(--border-radius);
     cursor: pointer;
-    transition: all var(--transition-speed) ease;
+    transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -314,6 +333,10 @@ body {
 
 .secondary-btn:hover {
     background-color: var(--bg-light);
+    border-color: var(--primary-green-hover);
+    color: var(--primary-green-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
 }
 
 .secondary-btn:active {
@@ -394,13 +417,13 @@ body {
 }
 
 .progress-step.active .step-num {
-    background-color: var(--primary-green);
-    border-color: var(--primary-green);
+    background-color: var(--accent-saffron);
+    border-color: var(--accent-saffron);
     color: var(--bg-white);
 }
 
 .progress-step.active .step-label {
-    color: var(--primary-green);
+    color: var(--accent-saffron);
 }
 
 /* ==========================================
@@ -446,18 +469,18 @@ body {
     padding: 12px 14px;
     font-size: 16px; /* Avoid mobile zooming */
     font-family: var(--font-primary);
-    border: 1.5px solid var(--border-color);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     background-color: var(--bg-light);
     color: var(--text-dark);
-    transition: all var(--transition-speed) ease;
+    transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
     outline: none;
 }
 
 .form-control:focus {
-    border-color: var(--primary-green);
+    border-color: var(--accent-saffron);
     background-color: var(--bg-white);
-    box-shadow: 0 0 0 3px rgba(15, 43, 91, 0.1);
+    box-shadow: 0 0 0 3px rgba(230, 95, 43, 0.15);
 }
 
 .form-control.invalid {
@@ -482,7 +505,7 @@ body {
 /* Custom Dropdown Arrow */
 select.form-control {
     appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F2B5B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231B4332' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 14px center;
     background-size: 16px;
@@ -794,14 +817,23 @@ select.form-control {
    Live Impact Counter Card
    ========================================== */
 .impact-counter-card {
-    background-color: var(--bg-white);
-    border: 2px solid var(--primary-green);
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(27, 67, 50, 0.08);
     border-top: 4px solid var(--accent-saffron);
     border-radius: var(--border-radius);
-    padding: 20px 24px;
+    padding: 32px 24px;
     box-shadow: var(--shadow-md);
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
+    transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.impact-counter-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
 .impact-header {
@@ -889,13 +921,21 @@ select.form-control {
    World Record Attempt Banner
    ========================================== */
 .world-record-banner {
-    background-color: #FFFDF5;
-    border: 1px solid #FDE68A;
+    background-color: rgba(253, 253, 251, 0.9);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(230, 95, 43, 0.15);
     border-left: 5px solid var(--accent-saffron);
     border-radius: var(--border-radius);
-    padding: 20px 22px;
-    margin-bottom: 24px;
+    padding: 24px;
+    margin-bottom: 28px;
     text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-speed) ease;
+}
+
+.world-record-banner:hover {
+    transform: translateY(-1px);
 }
 
 .wr-icon {
@@ -1031,14 +1071,16 @@ select.form-control {
 
 /* Helpline 1930 Banner styles */
 .helpline-banner-card {
-    background-color: #FFF7ED;
-    border: 1.5px solid #FFEDD5;
+    background-color: rgba(253, 253, 251, 0.9);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(230, 95, 43, 0.15);
     border-left: 5px solid var(--accent-saffron);
     border-radius: var(--border-radius);
-    padding: 14px 18px;
-    margin-bottom: 20px;
+    padding: 18px 24px;
+    margin-bottom: 24px;
     box-shadow: var(--shadow-sm);
-    animation: slideDown 0.4s ease-out;
+    animation: slideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes slideDown {
