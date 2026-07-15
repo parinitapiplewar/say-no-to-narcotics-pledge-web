@@ -900,8 +900,8 @@ async function generateCertificate(name, certId, district, village, policeStatio
     ctx.fillText('staying away from drugs, promoting a healthy lifestyle, and supporting a drug-free society.', w / 2, 458);
 
     ctx.font = 'normal 15px "Noto Sans Devanagari", sans-serif';
-    ctx.fillText('सफलतापूर्वक नशा मुक्ति (नशे को ना कहें) प्रतिज्ञा ली है और इसके लिए प्रतिबद्ध हैं,', w / 2, 495);
-    ctx.fillText('नशीले पदार्थों से दूर रहना, स्वस्थ जीवनशैली को बढ़ावा देना और नशा-मुक्त समाज का समर्थन करना।', w / 2, 518);
+    ctx.fillText('सफलतापूर्वक नशा मुक्ति की शपथ ग्रहण की है तथा', w / 2, 495);
+    ctx.fillText('नशीले पदार्थों से दूर रहने, स्वस्थ जीवनशैली अपनाने और नशा-मुक्त समाज के निर्माण में सक्रिय सहयोग प्रदान करने का संकल्प लिया है।', w / 2, 518);
 
     // Motto text
     ctx.fillStyle = '#E65F2B';
