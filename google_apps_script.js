@@ -25,7 +25,8 @@
 // ── GET: Return total pledge count ───────────────────────────────────────────
 function doGet(e) {
   try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName("Pledges") || ss.getSheetByName("Sheet1") || ss.getSheets()[0];
     // lastRow minus 1 to exclude the header row; clamp to 0
     var count = Math.max(0, sheet.getLastRow() - 1);
     return ContentService
@@ -42,7 +43,8 @@ function doGet(e) {
 function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName("Pledges") || ss.getSheetByName("Sheet1") || ss.getSheets()[0];
 
     sheet.appendRow([
       data.timestamp || "",
@@ -74,10 +76,4 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
   }
 }
-// ── OPTIONS: Handle CORS preflight requests ──────────────────────────────────
-function doOptions(e) {
-  return ContentService.createTextOutput("")
-    .setHeader("Access-Control-Allow-Origin", "*")
-    .setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
-    .setHeader("Access-Control-Allow-Headers", "Content-Type");
-}
+// Note: OPTIONS preflight requests are managed automatically by Google Apps Script's servers. Custom doOptions is not required when using simple requests.

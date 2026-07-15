@@ -2,7 +2,7 @@
 // Config & State
 // ==========================================================================
 // User configuration for Google Sheets Apps Script Webhook
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz1tvudqAOo-J0-xgxMTTRIAs5usrGMxn9YDOKIZQ5rsEnfNisGIv3Qv9cP49hgAryqcw/exec"; // Users can paste their web app URL here
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwoungSeIM3IlNUHYKS9EV65qtr1bFD5_h9j5c5pCFIsVC6O90_iMbv60bemfadHdtBSw/exec";
 
 let currentLanguage = 'hi'; // Default language set to Hindi (local initiative)
 
@@ -712,15 +712,29 @@ async function handleFormSubmit(e) {
             policeStation
         };
 
-        // Fire & forget fetch (using no-cors as Web Apps often respond with redirects)
+        // Send data using a CORS-friendly simple request (text/plain Content-Type avoids preflight)
         fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
-            mode: 'no-cors',
+            mode: 'cors',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'text/plain'
             },
             body: JSON.stringify(payload)
-        }).catch(err => console.warn("Google Sheets Logging failed, proceeding with certificate generation: ", err));
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                console.info("Google Sheets logging successful:", data);
+            } else {
+                console.warn("Google Sheets logging responded with error:", data.error || data.message);
+            }
+        })
+        .catch(err => console.warn("Google Sheets Logging failed, proceeding with certificate generation: ", err));
     } else {
         console.info("Google Sheet URL not configured. Data is not saved but certificate is generated.");
     }
