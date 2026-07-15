@@ -45,32 +45,35 @@ function doPost(e) {
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
     sheet.appendRow([
-      data.timestamp,
-      data.certificateId,
-      data.name,
-      data.mobile,
-      data.age,
-      data.gender,
-      data.district,
-      data.block,
-      data.village,
-      data.category,
-      data.policeStation
+      data.timestamp || "",
+      data.certificateId || "",
+      data.name || "",
+      data.mobile || "",
+      data.age || "",
+      data.gender || "",
+      data.district || "",
+      data.block || "",
+      data.village || "",
+      data.category || "",
+      data.policeStation || ""
     ]);
 
     return ContentService
-      .createTextOutput(JSON.stringify({ status: "success", message: "Data logged successfully" }))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader("Access-Control-Allow-Origin", "*");
+      .createTextOutput(JSON.stringify({
+        success: true,
+        message: "Pledge saved successfully"
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
 
   } catch (error) {
     return ContentService
-      .createTextOutput(JSON.stringify({ status: "error", message: error.toString() }))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader("Access-Control-Allow-Origin", "*");
+      .createTextOutput(JSON.stringify({
+        success: false,
+        error: error.toString()
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
   }
 }
-
 // ── OPTIONS: Handle CORS preflight requests ──────────────────────────────────
 function doOptions(e) {
   return ContentService.createTextOutput("")
