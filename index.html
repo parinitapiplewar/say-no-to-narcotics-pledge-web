@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasha Mukti - Say No to Drugs Pledge | नशा मुक्ति - नशीले पदार्थों को ना कहें शपथ</title>
+    <!-- Meta Descriptions & SEO -->
+    <meta name="description" content="Take the Nasha Mukti (Say No to Drugs) Pledge by Balaghat Police. Fill your details, commit to a drug-free, healthy life, and download your Nasha Mukti certificate instantly.">
+    <meta name="keywords" content="Nasha Mukti Pledge, Say No to Drugs, Balaghat Police, De-addiction, Certificate, Madhya Pradesh Police">
+    <meta name="author" content="Balaghat Police, Madhya Pradesh">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Sans+Devanagari:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- External JS Libraries (jsPDF & QRCode) via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <!-- Top Indian Flag Tri-color Border -->
+    <div class="tricolor-border">
+        <span class="saffron"></span>
+        <span class="white"></span>
+        <span class="green"></span>
+    </div>
+
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-title-group">
+                <div class="logos-row">
+    <div class="logo-wrapper">
+        <img
+            src="assets/mppolicelogo.png"
+            alt="Madhya Pradesh Police"
+            class="header-logo"
+        >
+    </div>
+</div>
+                <div class="title-wrapper">
+                    <h1 class="header-title-en" id="headerTitleEn">Balaghat Police</h1>
+                    <h2 class="header-title-hi" id="headerTitleHi">बालाघाट पुलिस</h2>
+                </div>
+            </div>
+            
+            <!-- Language Toggle Button -->
+            <button id="langToggleBtn" class="lang-toggle-btn" aria-label="Switch to Hindi / हिंदी में बदलें">
+                <span class="lang-text">हिंदी</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-content">
+        <!-- Cyber Helpline 1930 Banner -->
+        <section class="helpline-banner-card" aria-label="Drug Helpline Alert">
+            <div class="helpline-content">
+                <span class="helpline-icon">🌿</span>
+                <div class="helpline-text-group">
+                    <div class="helpline-title-row">
+                        <span class="helpline-title" id="helplineTitle">NATIONAL DRUG HELPLINE</span>
+                        <a href="tel:14446" class="helpline-phone-btn">📞 14446</a>
+                    </div>
+                    <p class="helpline-desc-en">Call 14446 for free drug de-addiction counseling and support.</p>
+                    <p class="helpline-desc-hi">निशुल्क नशा मुक्ति परामर्श और सहायता के लिए 14446 पर कॉल करें।</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Hero Section -->
+        <section id="welcomeSection" class="section-card welcome-card">
+            <!-- Official Initiative Label -->
+            <div class="govt-seal-container">
+                <span class="govt-label-en">Official Initiative by</span>
+                <span class="govt-label-org">Balaghat Police, Madhya Pradesh</span>
+            </div>
+
+            <!-- Health/Nature Icon -->
+            <div class="hero-shield">🚫🌿</div>
+
+            <!-- Hero Title -->
+            <h2 id="campaignTitle" class="campaign-title">
+                Nasha Mukti (Say No to Drugs) Awareness Pledge
+            </h2>
+            <p class="campaign-title-hi">नशा मुक्ति (नशीले पदार्थों को ना कहें) शपथ</p>
+
+            <!-- Info Badges -->
+            <div class="info-badges">
+                <div class="badge-item">
+                    <span class="badge-icon">🌿</span>
+                    <span class="badge-text" id="badgeSafe">Healthy Life</span>
+                </div>
+                <div class="badge-item">
+                    <span class="badge-icon">⚡</span>
+                    <span class="badge-text" id="badgeFast">Takes 1 Minute</span>
+                </div>
+                <div class="badge-item">
+                    <span class="badge-icon">📜</span>
+                    <span class="badge-text" id="badgeCert">Instant PDF/PNG</span>
+                </div>
+            </div>
+
+            <button id="startPledgeBtn" class="primary-btn ripple-effect">
+                Take Pledge / शपथ लें
+            </button>
+        </section>
+
+        <!-- World Record Attempt Banner -->
+        <section class="world-record-banner" aria-label="World Record Attempt">
+            <div class="wr-icon">🎯</div>
+            <h3 class="wr-title">World Record Attempt</h3>
+            <p class="wr-desc-en">
+                Join Balaghat Police in its mission to create a drug-free district and achieve a world record through maximum public participation in the Nasha Mukti Pledge.
+            </p>
+            <p class="wr-desc-hi">
+                बालाघाट पुलिस के साथ जुड़ें और नशा मुक्ति शपथ लेकर अधिकतम जनभागीदारी के माध्यम से विश्व रिकॉर्ड बनाने के इस अभियान का हिस्सा बनें।
+            </p>
+        </section>
+
+        <!-- Live Impact Counter -->
+        <section id="impactSection" class="impact-counter-card">
+            <!-- Citizen icon -->
+            <div class="impact-citizen-icon">👥</div>
+
+            <!-- Label -->
+            <p class="impact-label-en" id="impactLabel">Total Citizens Who Have Taken the Pledge</p>
+
+            <!-- LIVE COUNT -->
+            <div class="impact-count-wrapper">
+                <span id="impactCount" class="impact-count">—</span>
+            </div>
+
+            <!-- Live status pill -->
+            <div id="impactStatus" class="impact-status-dot">
+                <span class="dot-pulse"></span>
+                <span id="impactStatusText" class="impact-status-text">Live</span>
+            </div>
+
+            <!-- Goal Counter & Progress Bar -->
+            <div class="goal-container">
+                <div class="goal-labels">
+                    <span class="goal-label-text" id="goalTargetText">Campaign Target: 3,00,000 Pledges</span>
+                    <span class="goal-percent" id="goalPercentText">0% Completed</span>
+                </div>
+                <div class="goal-progress-bar">
+                    <div id="goalProgressBarFill" class="goal-progress-bar-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Bilingual subtitle -->
+            <p class="impact-motto-en">Every Citizen Counts. Say No to Drugs, Yes to Life.</p>
+            <p class="impact-motto-hi">हर नागरिक महत्वपूर्ण है, नशीले पदार्थों को ना कहें, जीवन को हाँ कहें।</p>
+        </section>
+
+        <!-- Form and Pledge Combined Section -->
+        <section id="formSection" class="section-card hidden">
+            <!-- Form Step Progress Bar -->
+            <div class="progress-bar-container">
+                <div class="progress-step active" id="step1Indicator">
+                    <span class="step-num">1</span>
+                    <span class="step-label" id="step1Label">Details</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" id="step2Indicator">
+                    <span class="step-num">2</span>
+                    <span class="step-label" id="step2Label">Pledge</span>
+                </div>
+            </div>
+
+            <!-- STEP 1: Registration Form -->
+            <form id="pledgeForm" novalidate>
+                <div id="stepDetails" class="form-step-content">
+                    <h3 class="step-title" id="detailsHeading">Enter Your Details</h3>
+                    <p class="step-subtitle" id="detailsSub">Fields marked with (*) are mandatory</p>
+                    
+                    <!-- Form Grid Container -->
+                    <div class="form-grid">
+                        <!-- Full Name -->
+                        <div class="form-group">
+                            <label for="fullName" id="labelName">Full Name *</label>
+                            <input type="text" id="fullName" class="form-control" placeholder="Enter your full name" required minlength="3">
+                            <span class="error-msg" id="errName">Please enter a valid name (at least 3 characters)</span>
+                        </div>
+
+                        <!-- Mobile Number -->
+                        <div class="form-group">
+                            <label for="mobile" id="labelMobile">Mobile Number (Optional)</label>
+                            <input type="tel" id="mobile" class="form-control" placeholder="Enter 10-digit mobile number" pattern="^[6-9]\d{9}$">
+                            <span class="error-msg" id="errMobile">Please enter a valid 10-digit Indian mobile number</span>
+                        </div>
+
+                        <!-- Age -->
+                        <div class="form-group">
+                            <label for="age" id="labelAge">Age *</label>
+                            <input type="number" id="age" class="form-control" placeholder="Enter your age" required min="1" max="120">
+                            <span class="error-msg" id="errAge">Please enter a valid age (1-120)</span>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="form-group">
+                            <label for="gender" id="labelGender">Gender *</label>
+                            <select id="gender" class="form-control" required>
+                                <option value="" disabled selected id="optSelectGender">Select Gender</option>
+                                <option value="Male" id="optMale">Male</option>
+                                <option value="Female" id="optFemale">Female</option>
+                                <option value="Other" id="optOther">Other</option>
+                            </select>
+                            <span class="error-msg" id="errGender">Please select a gender</span>
+                        </div>
+
+                        <!-- District -->
+                        <div class="form-group">
+                            <label for="district" id="labelDistrict">District *</label>
+                            <input type="text" id="district" class="form-control" value="Balaghat" required>
+                            <span class="error-msg" id="errDistrict">Please specify your district</span>
+                        </div>
+
+                        <!-- Block/Tehsil -->
+                        <div class="form-group">
+                            <label for="block" id="labelBlock">Block / Tehsil</label>
+                            <input type="text" id="block" class="form-control" placeholder="Enter block or tehsil name">
+                        </div>
+
+                        <!-- Village/City -->
+                        <div class="form-group">
+                            <label for="village" id="labelVillage">Village / City</label>
+                            <input type="text" id="village" class="form-control" placeholder="Enter village or city name">
+                        </div>
+
+                        <!-- Category -->
+                        <div class="form-group">
+                            <label for="category" id="labelCategory">Category *</label>
+                            <select id="category" class="form-control" required>
+                                <option value="" disabled selected id="optSelectCategory">Select Category</option>
+                                <option value="Student" id="optStudent">Student</option>
+                                <option value="Citizen" id="optCitizen">Citizen</option>
+                                <option value="Teacher" id="optTeacher">Teacher</option>
+                                <option value="Government Employee" id="optGovt">Government Employee</option>
+                                <option value="Business Owner" id="optBusiness">Business Owner</option>
+                            </select>
+                            <span class="error-msg" id="errCategory">Please select a category</span>
+                        </div>
+                    </div>
+
+                    <button type="button" id="nextToPledgeBtn" class="primary-btn mt-4">
+                        Proceed to Pledge / आगे बढ़ें
+                    </button>
+                </div>
+
+                <!-- STEP 2: Pledge Content & Agreement -->
+                <div id="stepPledge" class="form-step-content hidden">
+                    <h3 class="step-title" id="pledgeHeading">Nasha Mukti Pledge</h3>
+                    <p class="step-subtitle" id="pledgeSub">Read the de-addiction commitment carefully</p>
+
+                    <!-- Pledge Card Display (Responsive scroll layout) -->
+                    <div class="pledge-list-box">
+                        <ul class="pledge-rules" id="pledgeRulesList">
+                            <!-- Injected dynamically in selected language -->
+                        </ul>
+                    </div>
+
+                    <!-- Agreement Checkbox -->
+                    <div class="agreement-box">
+                        <input type="checkbox" id="agreeCheckbox" class="checkbox-control">
+                        <label for="agreeCheckbox" id="labelAgree" class="checkbox-label">
+                            I have read and agree to this pledge. / मैंने इस शपथ को पढ़ लिया है और मैं इससे सहमत हूँ।
+                        </label>
+                    </div>
+                    
+                    <div class="button-group flex-row">
+                        <button type="button" id="backToDetailsBtn" class="secondary-btn">
+                            Back
+                        </button>
+                        <button type="submit" id="submitPledgeBtn" class="primary-btn" disabled>
+                            Take Pledge & Generate Certificate
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- Certificate Success & Download Section -->
+        <section id="certificateSection" class="section-card hidden text-center">
+            <div class="success-icon-wrapper">
+                <div class="checkmark-circle">
+                    <span class="checkmark"></span>
+                </div>
+            </div>
+            
+            <h2 id="congratsTitle" class="congrats-title">Congratulations!</h2>
+            <p id="congratsDesc" class="congrats-desc">
+                You have successfully completed the Nasha Mukti Pledge and taken a step towards a healthier, drug-free India.
+            </p>
+
+            <!-- Certificate Canvas Container (Invisible canvas for drawing, styled img for view) -->
+            <div class="certificate-preview-box">
+                <canvas id="certificateCanvas" width="1200" height="840" style="display: none;"></canvas>
+                <div id="canvasLoader" class="canvas-loader">
+                    <div class="spinner"></div>
+                    <span id="generatingText">Generating your certificate...</span>
+                </div>
+                <img id="certificateImg" class="certificate-img" alt="Your Nasha Mukti Certificate" src="" style="display: none;">
+            </div>
+
+            <!-- Download Buttons -->
+            <div class="download-actions">
+                <button id="downloadPdfBtn" class="download-btn pdf-btn ripple-effect">
+                    <span class="btn-icon">📁</span>
+                    <span id="btnPdfText">Download PDF</span>
+                </button>
+                <button id="downloadPngBtn" class="download-btn png-btn ripple-effect">
+                    <span class="btn-icon">🖼️</span>
+                    <span id="btnPngText">Download Image</span>
+                </button>
+            </div>
+
+            <button id="restartBtn" class="secondary-btn mt-6">
+                Take Another Pledge / दूसरा शपथ लें
+            </button>
+        </section>
+
+        <!-- Invisible container for QR Code generation (libraries need a DOM node) -->
+        <div id="qrCodeContainer" style="display: none; visibility: hidden;"></div>
+
+    </main>
+
+    <!-- Trust Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <p id="footerText1">An initiative of Balaghat Police, Madhya Pradesh.</p>
+            <p id="footerText2" class="footer-subtext">Designed to raise de-addiction awareness and build a healthy, drug-free community. #NashaMuktiBalaghat</p>
+            <div class="emergency-contacts">
+                <span id="emergencyTitle">National Drug De-addiction Helpline:</span>
+                <a href="tel:14446" class="emergency-phone">14446</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main Application Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
